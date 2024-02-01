@@ -1,36 +1,38 @@
 import React, { useState } from "react";
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
-import "./Map.css";
-
 export default function Map(props) {
-    const mapStyles = {        
-        height: "50vh",
-        width: "50%"
-    };
-
-    const [markerPosition, setMarkerPosition] = useState({
-        lat: 41.3851,
-        lng: 2.1734
-    });
+    const [mapCenter, setMapCenter] = useState({ lat: 38.90899666691537, lng: -77.067332462228 });
+    const [markerPosition, setMarkerPosition] = useState(null);
+    const minZoomLevel = 14;
 
     const onMapClick = (event) => {
+        console.log(event.latLng.lat());
+        console.log(event.latLng.lng());
         setMarkerPosition({
             lat: event.latLng.lat(),
             lng: event.latLng.lng()
         });
     };
 
+    const mapOptions = {
+        mapTypeControl: false,
+        fullscreenControl: false,
+        clickableIcons: false,
+        disableDoubleClickZoom: true,
+        minZoom: minZoomLevel
+    };
+
     return (
-        <LoadScript
-            googleMapsApiKey="AIzaSyCnBKASLNJoWMGVatxoo456e7WO9ELADAw">
+        <LoadScript googleMapsApiKey="AIzaSyBfr_271qEHFo2CUz8YAwlSmfAYIuocGdU">
             <GoogleMap
-                mapContainerStyle={mapStyles}
-                zoom={13}
-                center={markerPosition}
+                mapContainerStyle={{ height: "50vh", width: "50%", outline: "none",}}
+                zoom={14}
+                center={mapCenter}
                 onClick={onMapClick}
+                options={mapOptions}
             >
-                <Marker position={markerPosition}/>
+                {markerPosition && <Marker position={markerPosition} />}
             </GoogleMap>
         </LoadScript>
     );

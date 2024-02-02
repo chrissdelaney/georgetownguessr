@@ -30,7 +30,7 @@ export default function Map(props) {
     };
 
     return (
-        <LoadScript googleMapsApiKey="AIzaSyBfr_271qEHFo2CUz8YAwlSmfAYIuocGdU">
+        <LoadScript googleMapsApiKey="########">
             <GoogleMap
                 mapContainerStyle={{ height: "50vh", width: "50%", outline: "none",}}
                 zoom={14}

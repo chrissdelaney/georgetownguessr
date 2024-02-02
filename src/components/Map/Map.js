@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, Marker } from '@react-google-maps/api';
+
+import "./Map.css";
 
 export default function Map(props) {
     const [mapCenter, setMapCenter] = useState({ lat: 38.90899666691537, lng: -77.067332462228 });
@@ -30,9 +32,9 @@ export default function Map(props) {
     };
 
     return (
-        <LoadScript googleMapsApiKey="AIzaSyBfr_271qEHFo2CUz8YAwlSmfAYIuocGdU">
+        <div className="map__wrapper">
             <GoogleMap
-                mapContainerStyle={{ height: "50vh", width: "50%", outline: "none",}}
+                mapContainerStyle={{ height: "100%", width: "100%", outline: "none",}}
                 zoom={14}
                 center={mapCenter}
                 onClick={onMapClick}
@@ -40,7 +42,7 @@ export default function Map(props) {
             >
                 {markerPosition && <Marker position={markerPosition} />}
             </GoogleMap>
-        </LoadScript>
+        </div>
     );
 }
 

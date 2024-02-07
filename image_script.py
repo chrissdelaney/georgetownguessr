@@ -54,7 +54,10 @@ def get_lat_lon(exif_data):
     else:
         return None, None
 
+
+
 # Example usage
+"""
 image_path = 'path/to/your/image.heic'  # Make sure to update this path
 exif_data = get_exif_data(image_path)
 latitude, longitude = get_lat_lon(exif_data)
@@ -62,3 +65,18 @@ if latitude and longitude:
     print(f"Latitude: {latitude}, Longitude: {longitude}")
 else:
     print("No GPS data found.")
+"""
+
+
+def generate_loc_objects(start, end):
+    for i in range(start, end + 1):
+        print("""    {
+        id: {i},
+        difficulty: 1,
+        type: "google",
+        lat: 0,
+        lng: 0,
+        heading: 0,
+        pitch: 0,
+        zoom: 0,
+    },""".format())

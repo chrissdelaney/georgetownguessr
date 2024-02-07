@@ -32,7 +32,7 @@ export default function Map(props) {
     };
 
     return (
-        <LoadScript googleMapsApiKey="#####">
+        <div className="map__wrapper">
             <GoogleMap
                 mapContainerStyle={{ height: "100%", width: "100%", outline: "none",}}
                 zoom={14}

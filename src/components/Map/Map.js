@@ -7,14 +7,14 @@ export default function Map(props) {
     const [mapCenter, setMapCenter] = useState({ lat: 38.90899666691537, lng: -77.067332462228 });
     const [markerPosition, setMarkerPosition] = useState(null);
     const minZoomLevel = 14;
+    const [currentDistance, setCurrentDistance] = useState(null);
+    const [currentScore, setCurrentScore] = useState(0);
 
     const onMapClick = (event) => {
-        console.log(event.latLng.lat(), event.latLng.lng());
-        console.log(props.imgCoords.latitude, props.imgCoords.longitude);
-        const dist = calculateDistance(props.imgCoords.latitude, props.imgCoords.longitude, event.latLng.lat(), event.latLng.lng());
-        console.log(`distance: ${dist} meters`);
-        const score = calculateExponentialScore(dist);
-        console.log(`score: ${score} pts`)
+        const dist = calculateDistance(props.currentImgData.lat, props.currentImgData.lng, event.latLng.lat(), event.latLng.lng());
+        setCurrentDistance(dist);
+        setCurrentScore(calculateExponentialScore(dist));
+        console.log(`score: ${currentScore} pts`);
         
 
         setMarkerPosition({
@@ -28,13 +28,19 @@ export default function Map(props) {
         fullscreenControl: false,
         clickableIcons: false,
         disableDoubleClickZoom: true,
+        streetViewControl: false,
         minZoom: minZoomLevel
     };
+
+    const handleGuess = () => {
+
+        props.setCurrentScore(currentScore);
+    }
 
     return (
         <div className="map__wrapper">
             <GoogleMap
-                mapContainerStyle={{ height: "100%", width: "100%", outline: "none",}}
+                mapContainerStyle={{ height: "80%", width: "100%", top: 0, outline: "none",}}
                 zoom={14}
                 center={mapCenter}
                 onClick={onMapClick}
@@ -42,6 +48,12 @@ export default function Map(props) {
             >
                 {markerPosition && <Marker position={markerPosition} />}
             </GoogleMap>
+            <div className="guess__btn__wrapper">
+                <button 
+                    className="guess__btn"
+                    onClick={handleGuess()}
+                > Guess</button>
+            </div>
         </div>
     );
 }

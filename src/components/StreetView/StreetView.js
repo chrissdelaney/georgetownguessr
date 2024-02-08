@@ -6,12 +6,13 @@ import "./StreetView.css";
 export default function StreetView(props) {
     const googleMapsApiKey = props.googleMapsApiKey;
     const streetViewPanoramaOptions = {
-        position: {lat: 38.90768333333333 , lng: -77.07220555555556}, // Example coordinates
-        pov: { heading: 230, pitch: 14 }, // Point of view: direction and angle
+        position: {lat: props.currentImgData.lat , lng: props.currentImgData.lng}, // Example coordinates
+        pov: { heading: props.currentImgData.heading, pitch: props.currentImgData.pitch }, // Point of view: direction and angle
         zoom: 1,
         disableDefaultUI: true, // Disable the default UI to remove most controls
         addressControl: false, // Hide the address
-        clickToGo: true,
+        clickToGo: false,
+        keyboardShortcuts: false,
         showRoadLabels: false, // Hide road labels
         enableCloseButton: false, // Hide close button
         motionTracking: false, // Disable motion tracking
@@ -47,7 +48,7 @@ export default function StreetView(props) {
                 zoom: pov.zoom,
             }
         });
-        logLocData();
+        //logLocData();
     }
 
     const logLocData = () => {

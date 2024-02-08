@@ -12,3 +12,31 @@
     width: 500px;
     height: 400px;
 }
+
+.guess__btn__wrapper {
+    width: 100%;
+    height: 20%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.guess__btn {
+    width: 95%;
+    height: 80%;
+
+    border: none;
+    border-radius: 20px;
+
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: font-size 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+}
+
+.map__wrapper:hover .guess__btn {
+    font-size: 2rem;
+    border-radius: 40px;
+}

@@ -17,7 +17,7 @@ export default function Game(props) {
 
     console.log(currentImgData);
 
-    const googleMapsApiKey = "###";
+    const googleMapsApiKey = "AIzaSyBfr_271qEHFo2CUz8YAwlSmfAYIuocGdU";
 
     const [currentScore, setCurrentScore] = React.useState(0);
 
